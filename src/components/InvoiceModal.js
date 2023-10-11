@@ -8,6 +8,9 @@ import Modal from 'react-bootstrap/Modal';
 import { BiPaperPlane, BiCloudDownload } from "react-icons/bi";
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf'
+import { withRouter } from 'react-router-dom';
+
+
 
 function GenerateInvoice() {
   html2canvas(document.querySelector("#invoiceCapture")).then((canvas) => {
@@ -26,10 +29,19 @@ function GenerateInvoice() {
   });
 }
 
+
 class InvoiceModal extends React.Component {
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
+    
+  // }
+
+  SaveInvoice = () => {
+    console.log('hello');
+    
+    this.props.history.push('/');
   }
+  
   render() {
     return(
       <div>
@@ -104,14 +116,14 @@ class InvoiceModal extends React.Component {
                     <td className="fw-bold" style={{width: '100px'}}>SUBTOTAL</td>
                     <td className="text-end" style={{width: '100px'}}>{this.props.currency} {this.props.subTotal}</td>
                   </tr>
-                  {this.props.taxAmmount != 0.00 &&
+                  {this.props.taxAmmount !== 0.00 &&
                     <tr className="text-end">
                       <td></td>
                       <td className="fw-bold" style={{width: '100px'}}>TAX</td>
                       <td className="text-end" style={{width: '100px'}}>{this.props.currency} {this.props.taxAmmount}</td>
                     </tr>
                   }
-                  {this.props.discountAmmount != 0.00 &&
+                  {this.props.discountAmmount !== 0.00 &&
                     <tr className="text-end">
                       <td></td>
                       <td className="fw-bold" style={{width: '100px'}}>DISCOUNT</td>
@@ -134,8 +146,8 @@ class InvoiceModal extends React.Component {
           <div className="pb-4 px-4">
             <Row>
               <Col md={6}>
-                <Button variant="primary" className="d-block w-100" onClick={GenerateInvoice}>
-                  <BiPaperPlane style={{width: '15px', height: '15px', marginTop: '-3px'}} className="me-2"/>Send Invoice
+                <Button variant="primary" className="d-block w-100" onClick={this.SaveInvoice}>
+                  <BiPaperPlane style={{width: '15px', height: '15px', marginTop: '-3px'}} className="me-2"/>Save Invoice
                 </Button>
               </Col>
               <Col md={6}>
@@ -153,4 +165,4 @@ class InvoiceModal extends React.Component {
   }
 }
 
-export default InvoiceModal;
+export default withRouter(InvoiceModal);
