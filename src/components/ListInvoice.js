@@ -9,7 +9,7 @@ import {
 import InvoiceModal from "./InvoiceModal";
 import { useNavigate } from "react-router-dom";
 import { BiTrash, BiEditAlt } from "react-icons/bi";
-import { Button, Card } from "react-bootstrap";
+import { Button, Card, Col, Row } from "react-bootstrap";
 
 export default function ListInvoice() {
   const { invoicesList, showInvoiceModal } = useSelector(invoiceState);

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { cloneDeep } from "lodash";
 
 const generateID = () => {
   let id = 1;
@@ -45,6 +46,8 @@ const initialState = {
 
   currentInvoice: getInitialInvoice(),
 
+  currrentEditIndex: null,
+
   invoicesList: [],
 };
 
@@ -52,8 +55,15 @@ export const invoiceSlice = createSlice({
   name: "invoice",
   initialState,
   reducers: {
-    saveInvoice: (state, action) => {
-      state.invoicesList = [state.currentInvoice, ...state.invoicesList];
+    saveInvoice: (state) => {
+      let list = cloneDeep(state.invoicesList);
+      if (state.currrentEditIndex !== null) {
+        list = [
+          ...list.filter((_, i) => i !== state.currrentEditIndex),
+        ];
+        state.currrentEditIndex = null;
+      }
+      state.invoicesList = [state.currentInvoice, ...list];
       state.currentInvoice = getInitialInvoice();
     },
 
@@ -72,10 +82,8 @@ export const invoiceSlice = createSlice({
     },
 
     editInvoice: (state, action) => {
+      state.currrentEditIndex = action.payload;
       state.currentInvoice = state.invoicesList[action.payload];
-      state.invoicesList = [
-        ...state.invoicesList.filter((_, i) => i !== action.payload),
-      ];
     },
   },
 });

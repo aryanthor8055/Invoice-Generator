@@ -7,9 +7,9 @@ An Invoice creator project built with React. Add itemized items, configure quant
 https://invoice-generator-199c-fcbwjm3ry-aryanthor8055.vercel.app/
 
 ### Screenshots
-<img src="/src/assets/screenshots/create-invoice.PNG" style="max-width: 100px; width: 100%; height: auto;">
-<img src="/src/assets/screenshots/Invoice-List.PNG" style="max-width: 100px; width: 100%; height: auto;">
-<img src="/src/assets/screenshots/List-Modal.PNG" style="max-width: 100px; width: 100%; height: auto;">
+<img src="./assets/screenshots/create-invoice.PNG" style="max-width: 100px; width: 100%; height: auto;"/>
+<img src="./assets/screenshots/Invoice-List.PNG" style="max-width: 100px; width: 100%; height: auto;">
+<img src="./assets/screenshots/List-Modal.PNG" style="max-width: 100px; width: 100%; height: auto;">
 
 ### Installation
 
